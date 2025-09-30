@@ -10,12 +10,11 @@ class UserController extends Controller
 {
     // menampilkan list user
     public function index()
-    {
-        // ambil data dengan join (sesuai modul)
-        $users = UserModel::getUser();
-        $title = 'Daftar Pengguna';
-        return view('list_user', compact('users', 'title'));
-    }
+{
+    $users = \App\Models\User::all(); // ambil semua data user dari database
+    return view('list_user', compact('users')); // kirim ke view list_user.blade.php
+}
+
 
     // menampilkan form create
     public function create()

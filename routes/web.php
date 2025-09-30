@@ -14,12 +14,13 @@ use App\Http\Controllers\UserController;
 
 // Route default untuk halaman welcome
 Route::get('/', function () {
-    return view('welcome');
+    return view('create_user');
 });
 
 // Route untuk halaman profile dengan parameter nama, npm, kelas
 
 
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store');

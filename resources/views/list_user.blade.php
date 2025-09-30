@@ -1,30 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-  <h3>Daftar Pengguna</h3>
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">📋 Daftar User</h4>
+            <a href="{{ route('user.create') }}" class="btn btn-light btn-sm">
+                ➕ Tambah User
+            </a>
+        </div>
+        <div class="card-body">
+            @if(session('success'))
+                <div class="alert alert-success">{{ session('success') }}</div>
+            @endif
 
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nama</th>
-        <th>NPM</th>
-        <th>Kelas</th>
-      </tr>
-    </thead>
-    <tbody>
-      @forelse ($users as $user)
-        <tr>
-          <td>{{ $user->id }}</td>
-          <td>{{ $user->nama }}</td>
-          <td>{{ $user->nim }}</td>
-          <td>{{ $user->nama_kelas ?? ($user->kelas->nama_kelas ?? '-') }}</td>
-        </tr>
-      @empty
-        <tr>
-          <td colspan="4" class="text-center">Belum ada data</td>
-        </tr>
-      @endforelse
-    </tbody>
-  </table>
+            {{-- Panggil komponen tabel user --}}
+            @include('components.user-table', ['users' => $users])
+        </div>
+    </div>
+</div>
 @endsection
