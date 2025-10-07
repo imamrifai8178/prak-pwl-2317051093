@@ -1,9 +1,16 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tambah User</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+  <div class="card p-4 shadow">
+    <h3 class="mb-3 text-center">Form Tambah User</h3>
 
-@section('content')
-<div class="card">
-  <div class="card-body">
-    <h3>Buat Pengguna Baru</h3>
     <form action="{{ route('user.store') }}" method="POST">
       @csrf
 
@@ -37,7 +44,9 @@
       </div>
 
       <button type="submit" class="btn btn-primary">Simpan</button>
+      <a href="{{ route('user.index') }}" class="btn btn-secondary">Kembali</a>
     </form>
   </div>
 </div>
-@endsection
+</body>
+</html>

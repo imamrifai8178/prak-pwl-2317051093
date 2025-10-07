@@ -12,13 +12,11 @@ class Kelas extends Model
     protected $table = 'kelas';
     protected $fillable = ['nama_kelas'];
 
-    // Method sesuai modul: getKelas()
     public static function getKelas()
     {
         return self::all();
     }
 
-    // Relasi (opsional - untuk Eloquent)
     public function users()
     {
         return $this->hasMany(UserModel::class, 'kelas_id');

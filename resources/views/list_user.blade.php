@@ -1,22 +1,39 @@
-@extends('layouts.app')
-
-@section('content')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar User</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 <div class="container mt-5">
-    <div class="card shadow-lg border-0 rounded-4">
-        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-            <h4 class="mb-0">📋 Daftar User</h4>
-            <a href="{{ route('user.create') }}" class="btn btn-light btn-sm">
-                ➕ Tambah User
-            </a>
-        </div>
-        <div class="card-body">
-            @if(session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
+  <h3 class="mb-3">Daftar User</h3>
 
-            {{-- Panggil komponen tabel user --}}
-            @include('components.user-table', ['users' => $users])
-        </div>
-    </div>
+  @if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+  @endif
+
+  <a href="{{ route('user.create') }}" class="btn btn-success mb-3">+ Tambah User</a>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>NIM</th>
+        <th>Kelas</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($users as $user)
+        <tr>
+          <td>{{ $user->nama }}</td>
+          <td>{{ $user->nim }}</td>
+          <td>{{ $user->kelas->nama_kelas ?? '-' }}</td>
+        </tr>
+      @endforeach
+    </tbody>
+  </table>
 </div>
-@endsection
+</body>
+</html>
