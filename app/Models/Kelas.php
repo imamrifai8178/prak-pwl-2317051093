@@ -12,13 +12,8 @@ class Kelas extends Model
     protected $table = 'kelas';
     protected $fillable = ['nama_kelas'];
 
-    public static function getKelas()
-    {
-        return self::all();
-    }
-
     public function users()
     {
-        return $this->hasMany(UserModel::class, 'kelas_id');
+        return $this->hasMany(User::class);
     }
 }
