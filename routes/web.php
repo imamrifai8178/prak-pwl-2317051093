@@ -2,26 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\MataKuliahController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Ini adalah file routes utama aplikasi Laravel.
-|
-*/
+Route::get('/', [UserController::class, 'index'])->name('users.index');
 
-// Arahkan halaman utama ke form tambah user
-Route::get('/', [UserController::class, 'create'])->name('user.create');
-
-// Route CRUD untuk User
-Route::get('/user', [UserController::class, 'index'])->name('user.index');
-Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
-Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
-
-// Route CRUD untuk Mata Kuliah (modul selanjutnya)
-Route::get('/matakuliah', [MataKuliahController::class, 'index'])->name('matakuliah.index');
-Route::get('/matakuliah/create', [MataKuliahController::class, 'create'])->name('matakuliah.create');
-Route::post('/matakuliah/store', [MataKuliahController::class, 'store'])->name('matakuliah.store');
+// CRUD User
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/edit/{uuid}', [UserController::class, 'edit'])->name('users.edit');
+Route::post('/users/update/{uuid}', [UserController::class, 'update'])->name('users.update');
+Route::get('/users/delete/{uuid}', [UserController::class, 'destroy'])->name('users.destroy');
